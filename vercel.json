@@ -1,0 +1,6 @@
+{
+  "routes": [
+    { "src": "/health", "dest": "/api/health.js" },
+    { "src": "/bfhl", "dest": "/api/bfhl.js" }
+  ]
+}
