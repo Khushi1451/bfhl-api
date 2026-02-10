@@ -80,15 +80,18 @@ export default async function handler(req, res) {
     //ai
    // AI Integration
     // AI Integration
+   // AI Integration
     else if (key === "AI") {
       const question = body[key];
       if (typeof question !== "string") throw "Invalid AI input";
 
       try {
         const response = await axios.post(
-          `https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent?key=AIzaSyBXaWZiNT4XW6ZereHyNGniyVLrDyqvqO0`,
+          `https://generativelanguage.googleapis.com/v1/models/gemini-1.5-flash:generateContent?key=AIzaSyBXaWZiNT4XW6ZereHyNGniyVLrDyqvqO0`,
           {
-            contents: [{ parts: [{ text: `${question} (Respond with ONLY one single word)` }] }]
+            contents: [{ 
+              parts: [{ text: `${question} (Respond with ONLY one single word)` }] 
+            }]
           },
           {
             headers: { 'Content-Type': 'application/json' }
@@ -102,7 +105,7 @@ export default async function handler(req, res) {
           throw "AI service returned empty content";
         }
       } catch (aiErr) {
-        // Detailed error reporting for the last test
+        // Detailed error reporting to identify any remaining issues
         throw `AI Error: ${aiErr.response?.data?.error?.message || aiErr.message}`;
       }
     }
