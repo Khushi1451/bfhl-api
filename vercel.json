@@ -1,6 +1,13 @@
 {
-  "routes": [
-    { "src": "/health", "dest": "/api/health.js" },
-    { "src": "/bfhl", "dest": "/api/bfhl.js" }
+  "version": 2,
+  "rewrites": [
+    {
+      "source": "/bfhl",
+      "destination": "/api/bfhl"
+    },
+    {
+      "source": "/health",
+      "destination": "/api/health"
+    }
   ]
 }
