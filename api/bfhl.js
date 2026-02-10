@@ -82,12 +82,15 @@ export default async function handler(req, res) {
       const question = body[key];
       if (typeof question !== "string") throw "Invalid AI input";
 
-      const response = await axios.post(
-       `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=AIzaSyBXaWZiNT4XW6ZereHyNGniyVLrDyqvqO0`,
-        {
-          contents: [{ parts: [{ text: question }] }]
-        }
-      );
+      
+const response = await axios.post(
+  `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=AIzaSyBXaWZiNT4XW6ZereHyNGniyVLrDyqvqO0`,
+  {
+    contents: [{ 
+      parts: [{ text: `${question} (Respond with ONLY one single word, no punctuation)` }] 
+    }]
+  }
+);
 
       const answer =
         response.data.candidates[0].content.parts[0].text;
